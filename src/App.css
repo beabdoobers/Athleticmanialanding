@@ -1,16 +1,20 @@
-/* Variáveis de Design Premium */
+/* ============================================================
+   Variáveis de Design Premium - Mantidas Originais
+   ============================================================ */
 :root {
-  --background: #050505;
-  --surface: #111111;
+  --background: #080808;
+  --surface: #121212;
   --primary: #ccff00; /* Verde Neon Athletic */
-  --primary-glow: rgba(204, 255, 0, 0.15);
+  --primary-glow: rgba(204, 255, 0, 0.3);
   --text-main: #ffffff;
-  --text-dim: #999999;
-  --accent: #1a1a1a;
+  --text-dim: #a0a0a0;
+  --accent: #222; /* Cor de borda original */
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reset e Base */
+/* ============================================================
+   Reset e Base - Ajustado para Fluidez Mobile
+   ============================================================ */
 * {
   margin: 0;
   padding: 0;
@@ -18,55 +22,70 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+html {
+  /* Garante que o scroll behavior funcione e não haja saltos */
+  scroll-behavior: smooth;
+  /* Ajuste base para fontes fluidas */
+  font-size: 16px; 
+}
+
 body {
   background-color: var(--background);
   color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  /* Melhora a renderização de texto em mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  /* Padding lateral ajustado para mobile (20px) e desktop (24px) */
+  padding: 0 clamp(20px, 5vw, 24px);
 }
 
 span { color: var(--primary); }
 
-/* Info Bar Superior */
-.info-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--accent);
-  padding: 12px 0;
-  font-size: 0.8rem;
-  color: var(--text-dim);
-}
-
-.info-bar .container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Hero Section */
+/* ============================================================
+   Hero Section - Responsiva
+   ============================================================ */
 .hero {
-  height: 90vh;
-  min-height: 600px;
-  background: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, var(--background) 100%),
-              url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070');
+  /* Usamos min-height em vez de height fixa para mobile */
+  min-height: 95vh;
+  /* Fallback para navegadores que não suportam vh dinâmico */
+  min-height: -webkit-fill-available; 
+  background: linear-gradient(to bottom, rgba(8,8,8,0.4), var(--background)),
+              url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070');
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  text-align: center;
+  position: relative;
+  /* Padding superior para não bater no nav no mobile */
+  padding-top: 100px; 
+  padding-bottom: 50px;
+}
+
+.nav-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Padding ajustado para mobile */
+  padding: clamp(20px, 4vw, 30px) clamp(20px, 5vw, 24px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  /* Fonte fluida para o logo */
+  font-size: clamp(1.5rem, 5vw, 1.8rem);
+  font-weight: 900;
+  letter-spacing: -1px;
 }
 
 .hero-content {
@@ -74,109 +93,265 @@ span { color: var(--primary); }
 }
 
 .hero-content h2 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  /* Fonte fluida para o título principal (mínimo maior para mobile) */
+  font-size: clamp(2.5rem, 8vw, 4.8rem);
   font-weight: 900;
-  line-height: 0.9;
-  margin: 20px auto;
-  text-transform: uppercase;
-  max-width: 900px;
+  line-height: 1;
+  max-width: 800px;
+  margin: 20px 0;
+  /* Centraliza no mobile, esquerda no desktop */
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-content h2 {
+    text-align: left;
+  }
+}
+
+.hero-content p {
+  /* Fonte fluida para o subtítulo */
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  color: var(--text-dim);
+  max-width: 600px;
+  margin-bottom: 30px;
+  /* Centraliza no mobile */
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-content p {
+    text-align: left;
+    margin-left: 0;
+  }
 }
 
 .badge {
   background: var(--primary-glow);
   color: var(--primary);
-  padding: 8px 20px;
+  padding: 6px 16px;
   border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  border: 1px solid rgba(204, 255, 0, 0.2);
+  font-size: clamp(0.7rem, 3vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-block;
 }
 
-/* Cards e Seções */
-.section { padding: 100px 0; }
+/* ============================================================
+   Seções e Títulos - Responsivos
+   ============================================================ */
+/* Padding vertical fluido para seções */
+.section { padding: clamp(60px, 10vh, 100px) 0; }
 
 .section-title {
-  font-size: 2.5rem;
+  /* Fonte fluida para títulos de seção */
+  font-size: clamp(2rem, 6vw, 2.5rem);
   font-weight: 800;
-  margin-bottom: 50px;
+  margin-bottom: clamp(30px, 5vw, 50px);
   text-align: center;
 }
 
-.testimonials-grid {
+/* ============================================================
+   Cards Grid - Mantido Original, Ajustado Mobile
+   ============================================================ */
+.cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Auto-fit garante que quebre em colunas no mobile */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
-.testimonial-card {
+.card {
   background: var(--surface);
-  padding: 35px;
+  /* Padding fluido dentro do card */
+  padding: clamp(25px, 5vw, 40px);
   border-radius: 24px;
   border: 1px solid var(--accent);
   transition: var(--transition);
-}
-
-.testimonial-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-5px);
-}
-
-/* Grid de Diferenciais */
-.features-icon-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-top: 30px;
-}
-
-.feature-tag {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--accent);
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  font-weight: 500;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Formulário e Contato */
+.card:hover {
+  border-color: var(--primary);
+  transform: translateY(-10px);
+}
+
+.icon-box {
+  color: var(--primary);
+  margin-bottom: 24px;
+  width: 40px;
+  height: 40px;
+  /* Garante que o ícone não encolha */
+  flex-shrink: 0; 
+}
+
+.card h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+/* ============================================================
+   Prova Social (Depoimentos) - Responsivo
+   ============================================================ */
+.social-proof {
+  background: #0a0a0a;
+  padding: 40px 0;
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.proof-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .proof-grid {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (min-width: 768px) {
+  .rating {
+    align-items: flex-start;
+  }
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.rating p {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.proof-text {
+  font-size: clamp(1rem, 4vw, 1.1rem);
+  font-style: italic;
+  color: var(--text-main);
+  max-width: 600px;
+}
+
+/* ============================================================
+   Formulário Premium e Contato - Responsivo
+   ============================================================ */
+.contact-section { background: #0f0f0f; padding: clamp(60px, 10vh, 100px) 0; }
+
 .contact-grid { 
   display: grid; 
-  grid-template-columns: 1fr 1fr; 
-  gap: 60px; 
-  align-items: start; 
+  /* Mobile: 1 coluna, Desktop: 2 colunas */
+  grid-template-columns: 1fr; 
+  gap: clamp(40px, 8vw, 80px); 
+  align-items: center; 
+}
+
+@media (min-width: 968px) {
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.contact-info h3 {
+  font-size: clamp(2rem, 6vw, 2.5rem);
+  font-weight: 800;
+  margin: 20px 0;
+  line-height: 1.1;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 15px;
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+.info-item span {
+  color: var(--text-dim); /* Mantém o texto cinza, apenas o ícone neon */
 }
 
 .form-wrapper {
-  background: #141414;
-  padding: 40px;
+  background: #161616;
+  /* Padding fluido do formulário */
+  padding: clamp(25px, 5vw, 40px);
   border-radius: 32px;
   border: 1px solid var(--accent);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-.input-field { margin-bottom: 20px; }
-.input-field label { display: block; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dim); }
+.premium-form .input-field { margin-bottom: 20px; }
+
+.premium-form label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
 
 .premium-form input, .premium-form select, .premium-form textarea {
   width: 100%;
   background: #0a0a0a;
-  border: 1px solid #222;
-  padding: 14px;
+  border: 1px solid #333;
+  /* Padding interno ajustado para mobile */
+  padding: clamp(12px, 3vw, 16px);
   color: white;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.premium-form input:focus, .premium-form select:focus, .premium-form textarea:focus {
+  border-color: var(--primary);
   outline: none;
 }
 
-.premium-form input:focus { border-color: var(--primary); }
+/* Input Row Responsiva (Nome/Tel, Objetivo/Já treina) */
+.input-row {
+  display: grid;
+  /* Mobile: 1 coluna, Tablet/Desktop: 2 colunas */
+  grid-template-columns: 1fr;
+  gap: 0;
+}
 
+@media (min-width: 580px) {
+  .input-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/* ============================================================
+   Botões Premium - Responsivos
+   ============================================================ */
 .btn-primary, .btn-submit {
   background: var(--primary);
   color: #000;
-  padding: 18px 32px;
+  /* Padding e fonte fluidos */
+  padding: clamp(14px, 3vw, 18px) clamp(24px, 4vw, 32px);
   border-radius: 12px;
   font-weight: 800;
+  font-size: clamp(0.9rem, 3vw, 1rem);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -184,37 +359,79 @@ span { color: var(--primary); }
   transition: var(--transition);
   border: none;
   cursor: pointer;
+  justify-content: center; /* Centraliza conteúdo interno */
 }
 
-.btn-submit { width: 100%; justify-content: center; }
-.btn-primary:hover, .btn-submit:hover { background: #fff; transform: scale(1.02); }
-
-/* Horários */
-.hour-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #222;
+/* Mobile: Botão principal ocupa largura total */
+.hero-content .btn-primary {
+  width: 100%;
+  max-width: 300px; /* Limita largura máxima no mobile */
+  margin: 0 auto;
 }
 
-/* WhatsApp Floating */
+@media (min-width: 768px) {
+  .hero-content .btn-primary {
+    width: auto;
+    margin: 0;
+  }
+}
+
+.btn-submit { 
+  width: 100%; 
+  font-size: 1rem; 
+}
+
+.btn-primary:hover, .btn-submit:hover {
+  background: #fff;
+  transform: scale(1.02);
+}
+
+/* ============================================================
+   Floating WhatsApp - Responsivo e Acessível
+   ============================================================ */
 .whatsapp-float {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  /* Posição ajustada para mobile */
+  bottom: clamp(15px, 4vw, 30px);
+  right: clamp(15px, 4vw, 30px);
   background: #25d366;
   color: white;
-  width: 60px;
-  height: 60px;
+  /* Tamanho fluido */
+  width: clamp(50px, 12vw, 65px);
+  height: clamp(50px, 12vw, 65px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  z-index: 100;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+  z-index: 999;
+  transition: transform 0.3s;
 }
 
-@media (max-width: 968px) {
-  .contact-grid { grid-template-columns: 1fr; }
-  .hero-content h2 { font-size: 3rem; }
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* Ajuste do tamanho do ícone Lucide dentro do Float */
+.whatsapp-float svg {
+  width: clamp(24px, 6vw, 32px);
+  height: clamp(24px, 6vw, 32px);
+}
+
+/* ============================================================
+   Footer - Responsivo
+   ============================================================ */
+.footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--accent);
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
 }
