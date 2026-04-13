@@ -1,0 +1,220 @@
+/* Variáveis de Design Premium */
+:root {
+  --background: #050505;
+  --surface: #111111;
+  --primary: #ccff00; /* Verde Neon Athletic */
+  --primary-glow: rgba(204, 255, 0, 0.15);
+  --text-main: #ffffff;
+  --text-dim: #999999;
+  --accent: #1a1a1a;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+span { color: var(--primary); }
+
+/* Info Bar Superior */
+.info-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--accent);
+  padding: 12px 0;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.info-bar .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hero Section */
+.hero {
+  height: 90vh;
+  min-height: 600px;
+  background: linear-gradient(180deg, rgba(5,5,5,0.6) 0%, var(--background) 100%),
+              url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.hero-content h2 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  margin: 20px auto;
+  text-transform: uppercase;
+  max-width: 900px;
+}
+
+.badge {
+  background: var(--primary-glow);
+  color: var(--primary);
+  padding: 8px 20px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border: 1px solid rgba(204, 255, 0, 0.2);
+}
+
+/* Cards e Seções */
+.section { padding: 100px 0; }
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.testimonial-card {
+  background: var(--surface);
+  padding: 35px;
+  border-radius: 24px;
+  border: 1px solid var(--accent);
+  transition: var(--transition);
+}
+
+.testimonial-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+/* Grid de Diferenciais */
+.features-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.feature-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Formulário e Contato */
+.contact-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 60px; 
+  align-items: start; 
+}
+
+.form-wrapper {
+  background: #141414;
+  padding: 40px;
+  border-radius: 32px;
+  border: 1px solid var(--accent);
+}
+
+.input-field { margin-bottom: 20px; }
+.input-field label { display: block; font-size: 0.8rem; margin-bottom: 8px; color: var(--text-dim); }
+
+.premium-form input, .premium-form select, .premium-form textarea {
+  width: 100%;
+  background: #0a0a0a;
+  border: 1px solid #222;
+  padding: 14px;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+
+.premium-form input:focus { border-color: var(--primary); }
+
+.btn-primary, .btn-submit {
+  background: var(--primary);
+  color: #000;
+  padding: 18px 32px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-submit { width: 100%; justify-content: center; }
+.btn-primary:hover, .btn-submit:hover { background: #fff; transform: scale(1.02); }
+
+/* Horários */
+.hour-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+/* WhatsApp Floating */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #25d366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+@media (max-width: 968px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero-content h2 { font-size: 3rem; }
+}
