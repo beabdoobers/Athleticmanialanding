@@ -57,7 +57,7 @@ span { color: var(--primary); }
   /* Fallback para navegadores que não suportam vh dinâmico */
   min-height: -webkit-fill-available; 
   background: linear-gradient(to bottom, rgba(8,8,8,0.4), var(--background)),
-              url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070');
+              url('https://lh3.googleusercontent.com/geougc-cs/AMG9lEQkooGLzy8NCDMY_Cd3MNbQNxBOxWIWzMNiArtqe8p9H6yWW-aiL7933B9sGZHlPIfIkE-2IhhurDQB5zbk4I9UrhAOS5hrG9OEupL57EbLK_rLQc0gw0ExUMIVR6Y4_Ww22Vyx=w600-h450-p');
   background-size: cover;
   background-position: center;
   display: flex;
