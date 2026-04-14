@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  CheckCircle2, Star, Users, Heart, Shield, 
+  CheckCircle2, Star, Users, Shield, 
   MessageCircle, ArrowRight, Sword, MapPin, Clock
 } from 'lucide-react';
 import { motion } from 'framer-motion';
